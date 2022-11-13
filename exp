@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Moving Car</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                $(document).keydown(function(event){
+                    var car = $('#car')
+                    var arrow = {left: 37, up: 38, right: 39, down: 40 };
+                    
+                    switch(event.which){
+                        case arrow.right: car.css('transform','rotate(360deg)');
+                                          car.animate({left:'+=5px'},1); 
+                                          break;
+                        case arrow.down:  car.css('transform','rotate(90deg)');
+                                          car.animate({top:'+=5px'},1);
+                                          break;
+                        case arrow.up:    car.css('transform','rotate(270deg)');
+                                          car.animate({top:'-=5px'},1);
+                                          break;
+                        case arrow.left:  car.css('transform','rotateY(180deg)');
+                                          car.animate({left:'-=5px'},1);
+                                          break;
+                    }
+                    var car = $('#car');
+            var car_pos = $('#car').position();
+            var l = car_pos.left;
+            var t = car_pos.top;
+ 
+            
+ 
+            if (l > 0 && l < 268  ) {
+                if(t < 85 || t >250)
+                    {
+                        $('#car').fadeOut('slow');
+                        $('#car').fadeIn('slow');  
+                    }
+            }
+            if (l >470) {
+                if(t < 85 || t >250)
+                    {
+                        $('#car').fadeOut('slow');
+                        $('#car').fadeIn('slow');  
+                    }
+            }
+            
+            })
+        })
+        </script>
+        <style>
+            *{
+                margin: 0px;
+                padding: 0px;
+                box-sizing: border-box;
+            }
+            .r1 {
+                  position: fixed;
+                  z-index: 0;
+                  top:0px;
+                  width: 200px;
+                  height: 800px;
+                  left: 40%;
+                  background-color: black;
+            }
+            .r2{
+                position: fixed;
+                top:100px;
+                z-index: 1;
+                width: 100%;
+                height: 200px;
+                background-color: black;
+            }
+ 
+        </style>
+    </head>
+    <body>
+        <div id="car" style="position:absolute;z-index:3;left:5px; top:100px;width:80px;height:50px;">
+            <img id="car" src="car.jpg" alt="" width="80" height="50">
+        </div>
+        <br>
+        <div class="r1"></div>
+        <div class="r2"></div>
+  
+    </body>
+    
+ 
+</html>
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Registration Form</title>
+        <h1>Registration Form</h1>
+ 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
+ 
+        </script>
+        <style>
+            .ancestors * { 
+              display: block;
+              border: 2px solid rgb(189, 15, 15);
+              color: rgb(217, 35, 35);
+              padding: 5px;
+              margin: 15px;
+            }
+            </style>
+        <script>
+            $(document).ready(function(){
+                $("#add").click(function(){
+                    $('#out').append("Name : " + $('#name').val() + "<br>Reg.No : " + $('#Reg').val() + "<br>");
+                   
+                });
+ 
+                $("#remove").click(function(){
+                    $("#div").remove()
+                });
+            });
+        </script>
+    </head>
+ 
+    <body>
+        Name :   &nbsp; &nbsp;    <input type="text" id="name"><br><br>
+        Reg.No. : <input type="text" id="Reg"><br><br>
+        
+ 
+        <div class="ancestors" id="div">
+           
+            <p id="out"> </p>
+        </div>
+ 
+    <button id="add">Append text</button>
+    <button id="remove">Remove text</button>
+    </body>
+</html><!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            .trapezoid{
+                border-bottom: 50px solid #555;
+                border-left: 25px solid transparent;
+                border-right: 25px solid transparent;
+                height: 0;
+                width: 125px;
+ 
+            }
+ 
+            .circle{
+                height: 50px;
+                width: 50px;
+                background-color:rgb(15, 26, 26);
+                border-radius: 50%;
+                display: inline-block;
+            }
+ 
+            .rectangle{
+                height: 50px;
+                width: 250px;
+                background-color: aquamarine;
+            }
+        </style>
+ 
+    </head>
+ 
+    <body>
+        <h2>Trapezoid CSS</h2>
+ 
+        <div class="trapezoid"></div>
+        <div class="rectangle"></div>
+ 
+        <div class="circle"></div>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <div class="circle"></div>
+    </body>
+</html>
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://code.angularjs.org/1.6.9/angular.js"></script>
+        <script>
+            var app = angular.module("app", []);
+            app.controller("FrmController", function($scope) 
+            {
+                $scope.comment = [];
+                $scope.btn_add = function() 
+                { 
+                    if($scope.txtcomment !='')
+                    {   
+                        $scope.comment.push($scope.txtcomment);
+                        $scope.txtcomment = "";
+                    }
+                } 
+                $scope.remItem = function($index) { 
+                $scope.comment.splice($index, 1);}
+            }); 
+        </script> 
+    </head>
+ 
+    <body ng-app="app"> 
+        <div id='dvl'> 
+            <form ng-controller="FrmController"> 
+                Post your Comment
+                <br>
+                <form ng-controller="FrmController"> 
+                    <textarea ng-model="txtcomment" placeholder="Your Comment" style='width:550px'></textarea>
+                    <br> 
+                    <button ng-click='btn_add();'style='margin-top:10px;'>Post Comment</button> 
+                    <h4>Comments</h4> 
+                    <ul> 
+                        <li ng-repeat="comnt in comment"> {{comnt}} <a style="float: right;" href="" ng-click="remItem($index)">x</a></li> 
+                    </ul> 
+                </form> 
+            </form>
+        </div> 
+        
+    </body>
+        
+</html>
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://code.angularjs.org/1.6.9/angular.js"></script>
+        <script> 
+ 
+        var app = angular.module('todoApp', []) 
+            app.controller('todoController', function($scope) { 
+                $scope.tasks = [];
+                $scope.add = function() { 
+                    $scope.tasks.push($scope.title);
+                }
+            }) 
+        </script>
+    </head>
+    <body ng-app="todoApp">
+        <div  ng-controller="todoController"> 
+            <input ng-model="title"><button ng-click="add()">Add</button> 
+            <ul> 
+                <li ng-repeat="t in tasks">{{t}}</li> 
+            </ul> 
+        </div>
+    </body>
+</html>
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://code.angularjs.org/1.6.9/angular.js"></script>
+        <script>
+            var app = angular.module('registration',[]) 
+            app.controller('regcontroller', function($scope) 
+            { 
+                
+                
+            }); 
+        </script>
+    </head>
+ 
+    <body ng-app="registration" style="color: blue;">
+        <form  ng-controller="regcontroller" name="regform"> 
+            <h1>User Registration Form</h1>
+            
+            <table>
+                <tr>
+                    <td style="width:35%"><label for="name">Name : </label><span style="color: red">*</span></td>
+                    <td><input type="text" ng-model="name" id="name" name="name" required pattern="[a-z,A-Z]{1,}">
+                    <span style="color: red" ng-show="regform.name.$error.required">Name is required</span>
+                    <span style="color: red;" ng-show="regform.name.$error.pattern">Name is invalid</span></td>
+                    
+                </tr>
+                <tr>
+                    <td><br></td>
+                    <td><br></td>
+                </tr>
+                <tr>
+                    <td><label for="password">Password :</label><span style="color: red">*</span></td>
+                    <td><input type="password" ng-model="Password" id="password" name="password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
+                        <span style="color: red" ng-show="regform.password.$error.required">password is required</span>
+                        <span style="color: red;" ng-show="regform.password.$error.pattern">Password is invalid</span></td>
+                </tr>
+ 
+                <tr>
+                    <td><br></td>
+                    <td><br></td>
+                </tr>
+ 
+                <tr>
+                    <td><label for="age">Age : </label><span style="color: red">*</span></td>
+                    <td><input type="number" ng-model="age" id="age" name="age" required min="18" max="30">
+                        <span style="color: red" ng-show="regform.age.$error.required">Age is required</span>
+                        <span style="color: red;" ng-show="regform.age.$error.min">Age is invalid</span>
+                        <span style="color: red;" ng-show="regform.age.$error.max">Age is invalid</span></td>
+                </tr>
+ 
+                <tr>
+                    <td><br></td>
+                    <td><br></td>
+                </tr>
+ 
+                <tr>
+                    <td><label for="number">Mobile Number : </label><span style="color: red">*</span></td>
+                    <td><input type="number" ng-model="number" id="number" name="number" required pattern="[0-9]{10}">
+                        <span style="color: red" ng-show="regform.number.$error.required">Number is required</span>
+                        <span style="color: red;" ng-show="regform.number.$error.pattern">Mobile number is invalid</span></td>
+                </tr>
+ 
+                <tr>
+                    <td><br></td>
+                    <td><br></td>
+                </tr>
+ 
+                <tr>
+                    <td><label for="email">Email : </label><span style="color: red">*</span></td>
+                    <td><input type="email" ng-model="email" id="email" name="email" required>
+                        <span style="color: red" ng-show="regform.email.$error.required">Email is required</span>
+                        <span style="color: red" ng-show="regform.email.$error.email">Email Format</span></td>
+                </tr>
+ 
+                <tr>
+                    <td><br></td>
+                    <td><br></td>
+                </tr>
+ 
+                <tr>
+                    <td><label for="gender">Gender :</label><span style="color: red">*</span></td>
+                    <td><input type="radio" ng-model = 'gender' name="gender" value="male" id="gender" required>Male 
+                        <input type="radio" ng-model = 'gender' name="gender" value="female" id="gender" required>Female
+                        <span style="color: red" ng-show="regform.gender.$error.required">Gender is required</span></td>
+                </tr>
+ 
+                <tr>
+                    <td><br></td>
+                    <td><br></td>
+                </tr>
+ 
+                <tr>
+                    <td><label for="state">State :</label><span style="color: red">*</span></td>
+                    <td><select ng-model="state" id="state" name="state" required> 
+                        
+                        <option>TamilNadu</option> 
+                        <option>Kerala</option> 
+                        <option>AndhraPradesh</option> 
+                        <option>Karnataka</option>
+                        <span style="color: red" ng-show="regform.state.$error.required">State is required</span></td>
+                </tr>
+ 
+                <tr>
+                    <td><br></td>
+                    <td><br></td>
+                </tr>
+ 
+                <tr>
+                    <td></td>
+                    <td><input type="submit" ng-disabled=" regform.name.$error.required || regform.password.$error.required || regform.age.$error.required ||
+                         regform.number.$error.required || regform.email.$error.required || regform.gender.$error.required || regform.state.$error.required" ></td>
+                </tr>
+ 
+                
+ 
+            </table>
+ 
+             
+        </form> 
+    </body>
+</html>
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://code.angularjs.org/1.6.9/angular.js"></script>
+        <script>
+            var app = angular.module('registration',[]) 
+            app.controller('regcontroller', function($scope) 
+            { 
+                
+                
+            }); 
+        </script>
+        <style>
+        body {
+            background-image: url('CHRIS.jpg');
+          }
+ 
+        div.a{
+            font-size: large;
+            color: yellow;
+        }
+          </style>
+       
+        
+ 
+    </head>
+ 
+    <body ng-app="registration" style="color: blue;">
+        <form  ng-controller="regcontroller" name="regform"> 
+            <br>
+            <br><br><br><br><br><br>
+            <br>
+            <br>
+           
+            <h1>Christmas Megaplay 2022 Registration Form</h1>
+           <div class="a">
+            <table style="align-items:center ;">
+                <tr>
+                    <td style="width:35%"><label for="name">Name : </label><span style="color: red">*</span></td>
+                    <td><input type="text" ng-model="name" id="name" name="name" required pattern="[a-z,A-Z]{1,}">
+                    <span style="color: red" ng-show="regform.name.$error.required">Name is required</span>
+                    <span style="color: red;" ng-show="regform.name.$error.pattern">Name is invalid</span></td>
+                    
+                </tr>
+                <tr>
+                    <td><br></td>
+                    <td><br></td>
+                </tr>
+                <tr>
+                    <td><label for="register" >Register Number:</label><span style="color: red">*</span></td>
+                    <td><input type="text" ng-model="register" id="register" name="register" required>
+                        <span style="color: red" ng-show="regform.register.$error.required">Register Number is required</span>
+                       </td>
+                </tr>
+ 
+                <tr>
+                    <td><br></td>
+                    <td><br></td>
+                </tr>
+ 
+                <tr>
+                    <td><label for="register" class="box">Year of Study:</label><span style="color: red">*</span></td>
+                    <td><input type='radio' name="year" ng-model="year" value="1st" required>1st
+                        <input type='radio' name="year" ng-model="year" value="2nd" required>2nd
+                        <input type='radio' name="year" ng-model="year" value="3rd" required>3rd
+                        <input type='radio' name="year" ng-model="year" value="4th" required>4th
+                        <span style="color: red;"ng-show="regform.year.$error.required"> Year is required</span>
+                        </td>
+                </tr>
+    
+                <tr>
+                    <td><br></td>
+                    <td><br></td>
+                </tr>
+ 
+                <tr>
+                    <td><label for="age">Age : </label><span style="color: red">*</span></td>
+                    <td><input type="number" ng-model="age" id="age" name="age" required min="18" max="30">
+                        <span style="color: red" ng-show="regform.age.$error.required">Age is required</span>
+                        <span style="color: red;" ng-show="regform.age.$error.min">Age is invalid</span>
+                        <span style="color: red;" ng-show="regform.age.$error.max">Age is invalid</span></td>
+                </tr>
+ 
+                <tr>
+                    <td><br></td>
+                    <td><br></td>
+                </tr>
+ 
+                <tr>
+                    <td><label for="number">Mobile Number : </label><span style="color: red">*</span></td>
+                    <td><input type="number" ng-model="number" id="number" name="number" required pattern="[0-9]{10}">
+                        <span style="color: red" ng-show="regform.number.$error.required">Number is required</span>
+                        <span style="color: red;" ng-show="regform.number.$error.pattern">Mobile number is invalid</span></td>
+                </tr>
+ 
+                <tr>
+                    <td><br></td>
+                    <td><br></td>
+                </tr>
+ 
+                <tr>
+                    <td><label for="email">Email : </label><span style="color: red">*</span></td>
+                    <td><input type="email" ng-model="email" id="email" name="email" required>
+                        <span style="color: red" ng-show="regform.email.$error.required">Email is required</span>
+                        <span style="color: red" ng-show="regform.email.$error.email">Email Format</span></td>
+                </tr>
+ 
+                <tr>
+                    <td><br></td>
+                    <td><br></td>
+                </tr>
+ 
+                <tr>
+                    <td><label for="gender">Gender :</label><span style="color: red">*</span></td>
+                    <td><input type="radio" ng-model = 'gender' name="gender" value="male" id="gender" required>Male 
+                        <input type="radio" ng-model = 'gender' name="gender" value="female" id="gender" required>Female
+                        <span style="color: red" ng-show="regform.gender.$error.required">Gender is required</span></td>
+                </tr>
+ 
+                <tr>
+                    <td><br></td>
+                    <td><br></td>
+                </tr>
+ 
+                <tr>
+                    <td><label for="activity">Activity:</label><span style="color: red">*</span></td>
+                    <td><select ng-model="activity" id="activity" name="activity" required> 
+                        
+                        <option value="song">Song</option> 
+                        <option value="dance">Dance</option> 
+                        <option value="drama">Drama</option> 
+                        <option value="mime">Mime</option>
+                        <span style="color: red" ng-show="regform.activity.$error.required">Activity is required</span></td>
+                </tr>
+ 
+                <tr>
+                    <td><br></td>
+                    <td><br></td>
+                </tr>
+ 
+                <tr>
+                    <td></td>
+                    <td><input type="submit" ng-disabled=" regform.name.$error.required || regform.password.$error.required || regform.age.$error.required ||
+                         regform.number.$error.required || regform.email.$error.required || regform.gender.$error.required || regform.state.$error.required" ></td>
+                </tr>
+ 
+                
+ 
+            </table>
+        </div> 
+             
+        </form> 
+    </body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+       
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+        <script>
+            var app=angular.module("myApp",['ngRoute']);
+            app.config(function($routeProvider){
+               $routeProvider.when('/2063',{
+                templateUrl:'2063.html'
+               })
+               .when('/2016',{
+                templateUrl:'2016.html'
+               })
+               .when('/2027',{
+                templateUrl:'2027.html'
+               })
+               .when('/2119',{
+                templateUrl:'2119.html'
+               })
+    
+            });
+        </script>
+    </head>
+    <body ng-app="myApp">
+        <divclass="sidebar"width="20%">
+            <h2>REGISTER NUMBERS</h2>
+            <a href="2063.html"><b>URK20CS2063</b></a>
+            <a href="2016.html"><b>URK20CS2016</b></a>
+            <a href="2027.html"><b>URK20CS2027</b></a>
+            <a href="2119.html"><b>URK20CS2119</b></a>
+        </div>
+        <div class="content" ng-view></div>
+</body>
+</html>
+<html>
+ 
+<body>
+    <h2>WADE WILSON</h2>
+<br><br>
+<P>
+    <b>Register Number: </b>URK20CS2063
+    <br>
+    <b>Course: </b>BTech Computer Science and Engineering (Specialization in Artificial Intelligence)
+    <br>
+    <b>Year of Duration: </b>2020 - 2024
+</P>
+ 
+</body>
+</html>
+<html>
+<body>
+    <h2>Barnes</h2>
+<br><br>
+<P>
+    <b>Register Number: </b>URK20CS2016
+    <br>
+    <b>Course: </b>BTech Computer Science and Engineering (Specialization in Artificial Intelligence)
+    <br>
+    <b>Year of Duration: </b>2020 - 2024
+</P>
+ 
+</body>
+</html>
+<html>
+<body>
+    <h2>Tom</h2>
+<br><br>
+<P>
+    <b>Register Number: </b>URK20CS2027
+    <br>
+    <b>Course: </b>BTech Computer Science and Engineering (Specialization in Artificial Intelligence)
+    <br>
+    <b>Year of Duration: </b>2020 - 2024
+</P>
+ 
+</body>
+</html<html>
+<body>
+    <h2>Luke</h2>
+<br><br>
+<P>
+    <b>Register Number: </b>URK20CS2119
+    <br>
+    <b>Course: </b>BTech Computer Science and Engineering (Specialization in Artificial Intelligence)
+    <br>
+    <b>Year of Duration: </b>2020 - 2024
+</P>
+ 
+</body>
+</html>
+
